@@ -1,0 +1,11 @@
+This repository contains my major VIM configurations.
+You should be aware of the fact that this configuration is optimized for the FR-BÉPO keyboard layout.
+
+Installation:
+
+    git clone git://github.com/Calmacil/vim_env.git your/vim/envs/directory
+    ln -s your/vim/envs/directory/env_name ~/.vim
+    ln -s ~/.vim/vimrc .vimrc
+
+Except for the “default” environnement, you should cd in each dir and follow
+its README instructions.

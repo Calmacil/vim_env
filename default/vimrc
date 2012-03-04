@@ -111,7 +111,7 @@ if filereadable("~/.vim/plugin/jelix.vim")
 endif
 
 runtime! ~/.vim/plugin/project.vim
-source ~/.vimrc.bepo
+source ~/.vim/bepo.vim
 let mapleader=","
 
 " srcexplr mappings
@@ -131,11 +131,6 @@ let g:SrcExpl_updateTagsKey = "<F12>"
 
 au bufread,bufnewfile *.names set ft=dosini
 au bufread,bufnewfile *.t2t set ft=txt2tags
-
-so ~/.vim/shortkeys.vim
-
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 
 au filetype python set omnifunc=pythoncomplete#Complete
 au filetype javascript set omnifunc=javascriptcomplete#CompleteJS
