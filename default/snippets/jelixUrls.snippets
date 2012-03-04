@@ -1,0 +1,20 @@
+snippet urls
+	<urls xmlns="http://jelix.org/ns/urls/1.0">
+		${1:<!-- <entrypoint> tags -->}
+	</urls>
+snippet ent
+	<entrypoint name="${1:index}" default="${2:true}" type="${3:classic}">
+		${4:<!-- <url> tags -->}
+	</entrypoint>
+snippet url
+	<url pathinfo="${1}" module="${2}" action="${3}" optionalTrailingSlash="${4:true}"/>${5}
+snippet urlp
+	<url pathinfo="${1}" module="${2}" action="${3}" optionalTrailingSlash="${4:true}">
+		${5:<!-- <param> tags -->}
+	</url>
+snippet par type
+	<param name="${1:name}" type="${2:string}" />${3}
+snippet par regexp
+	<param name="${1:name}" regexp="${2:\d+}" />${3}
+snippet st
+	<static name="${1:name}" value="${2}" />${3}

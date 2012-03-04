@@ -1,0 +1,129 @@
+snippet form
+	<?xml version="1.0" encoding="utf-8"?>
+	<form xmlns="http://jelix.org/ns/forms/1.1">
+		${1}
+	</form>
+snippet inp
+	<input ref="${1:ref}" type="${2:type}">
+		<label>${3:label}</label>
+	</input>${4}
+snippet lab
+	<label>${1:label}</label>${2}
+snippet llab
+	<label locale="${1:module}~${2:file}.${3:key}"/>${4}
+snippet help
+	<help>${1:help message}</help>
+snippet alert
+	<alert type="${1:type}">${2:message}</alert>${3:}
+snippet alertl
+	<alert type="${1:type}" locale="${2:module}~${3:file}.${4:key}"/>${4}
+snippet hint
+	<hint>${1:message}</hint>${2}
+snippet hintl
+	<hint locale="${1:locale}"/>${2}
+snippet text
+	<textarea ref="${1:ref}>
+		<label>${2:label}</label>
+	</textarea>${3}
+snippet html
+	<htmleditor ref="${1:ref}">
+		<label>${2:label}</label>
+	</htmleditor>${3}
+snippet wiki
+	<wikieditor ref="${1:ref}">
+		<label>${2:label}</label>
+	</wikieditor>${3}
+snippet date
+	<date ref="${1:ref}">
+		<label>${2:label}</label>
+	</date>${3}
+snippet pwd
+	<secret ref="${1:password}>
+		<label>${2:Mot de passe}</label>
+	</secret>${3}
+snippet pwdc
+	<secret ref="${1:password}">
+		<label>${2:Mot de passe}</label>
+		<confirm>${3:Merci de confirmer}</confirm>
+	</secret>${4}
+snippet chk
+	<checkbox ref="${1:ref}">
+		<label>${2:label}</label>
+	</checkbox>${3}
+snippet chkv
+	<checkbox ref="${1:ref}" valueoncheck="${2:O}" valueonuncheck="${3:N}">
+		<label>${4:label}</label>
+	</checkbox>${5}
+snippet chkg
+	<checkboxes ref="${1:ref}">
+		<label>${2:label}</label>
+		<!-- datasource/items -->
+		${3}
+	</checkboxes>
+snippet radio
+	<menulist ref="${1:ref}">
+		<label>${2:label}</label>
+		<!-- datasource/items -->
+		${3}
+	</menulist>
+snippet empty
+	<emptyitem>${1:faites votre choix}</emptyitem>
+snippet list
+	<listbox ref="${1:ref}">
+		<label>${2:label}</label>
+		<!-- datasource/items -->
+		${3}
+	</listbox>
+snippet upload
+	<upload ref="${1:ref}" mimetype="${2:image/jpeg;image/pjpeg;image/png}" maxsize="${3:size}">
+		<label>${4:label}</label>
+	</upload>${5}
+snippet group
+	<group ref="${1:ref}">
+		<label>${2:Label}</label>
+		<!-- fields -->
+		${3}
+	</group>
+snippet choice
+	<choice ref="${1:ref}">
+		<label>${2:label}</label>
+		<item value="${3:val}">
+			<label>${4:label}</label>
+			<!-- fields -->
+			${7}
+		</item>
+		<item value="${5:val2}">
+			<label>${6:label}</label>
+			<!-- fields -->
+		</item>
+	</choice>
+snippet captcha
+	<captcha ref="${1:ref}">
+		<label>${2:vérif antispam}</label>
+	</captcha>${3}
+snippet submit
+	<submit ref="${1:submit}">
+		<label>${2:Ok}</label>
+	</submit>${3}
+snippet reset
+	<reset ref="${1:reinit}">
+		<label>${2:Reset}</label>
+	</reset>${3}
+snippet output
+	<output ref="${1:ref}">
+		<label>${2:label}</label>
+	</output>${3}
+snippet hid
+	<hidden ref="${1:ref}" defaultvalue="${2:default}"/>
+snippet dts
+	<datasource dao="${1:selector}" 	method="${2:findAll}"
+		labelproperty="${3:label}" 		valueproperty="${4:value}"/>${5}
+snippet dtsarg
+	<datasourche dao="${1:selector}"	method="${2:findByTruc}"	criteria="${3:truc}"
+		labelproperty="${4:label}"		valueproperty="${5:value}"/>${5}
+snippet dtsfrom
+	<datasource dao="${1:selector}"		method="${2:findByTruc}"	criteriafrom="${3:truclist}"
+		labelproperty="${4:trucvalue}"	valueproperty="${5:truckey}"/>${5}
+snippet dtscls
+	<datasoure class"${1:selector}"/>
+	

@@ -1,0 +1,87 @@
+snippet dao
+	<dao xmlns="http://jelix.org/ns/dao/1.0">
+		<datasources>
+			<!-- table definitions -->
+			${1:ptable}
+		</datasources>
+		<record>
+			<!-- properties -->
+
+		</record>
+		<factory>
+			<!-- method -->
+
+		</factory
+	</dao>
+snippet ptable
+	<primarytable name="${1:name}" realname="${2:realname}" primarykey="${3:id}" />${4}
+snippet ftable
+	<foreigntable name="${1:name}" realname="${2:realname}" primarykey="${3:id}" onforeignkey="${4:id_truc}" />${5}
+snippet otable
+	<optionalforeigntable name="${1:name}" realname="${2:realname}" primarykey="${3:id}" onforeignkey="${4:id_truc}" />${5}
+snippet prop
+	<property name="${1:name}" fieldname="${2:field}" datatype="${3:string}" default="${4}" />
+snippet propfull
+	<property
+		name="${1:name}"
+		fieldname="${2:fieldname}"
+		datatype="${3}" required="${4:true}" minlength="${5:0}" maxlength="${6:255}" regexp="${7}"
+		sequence="${8:sequence_name}" autoincrement="${9:true}"
+		updatepattern="" insertpattern="" selectpattern=""
+		default="${10:NULL}"
+	/>
+snippet method
+	<method type="${1:select}" name="${2:name}">
+		<!-- parameter/conditions/order/limit -->
+		${3}
+	</method>
+snippet param
+	<parameter name="${1:name}" />${2}
+snippet paramd
+	<parameter name="${1:name}" default="${2:default}" />${3}
+snippet cond
+	<conditions logic="${1:AND}">
+		<!-- eq/neq/lt/gt/lteq/gteq/like/notlike/isnull/isnotnull/in/notin -->
+		${2}
+	</conditions>
+snippet order
+	<order>
+		<orderitem property="${1:foo}" way="${2:asc}" />${3}
+	</order>
+snippet ordit
+	<orderitem property="${1:foo}" way="${2:asc}" />${3}
+snippet lim
+	<limit offset="${1:$offset}" count="${2:$count}"/>${3}
+snippet values
+	<values>
+		<value property="${1:foo}" ${2:value="bar"}/>
+		${3}
+	</values>
+snippet val
+	<value property="${1:foo}" value="${2:bar}"/>${3}
+snippet vale
+	<value property="${1:foo}" expr=${2:bar}"/>${3}
+snippet eq
+	<eq			property="${1:foo}" expr="${2:$bar}"/>${3}
+snippet neq
+	<neq		property="${1:foo}"	expr="${2:$bar}"/>${3}
+snippet lt
+	<lt			property="${1:foo}"	expr="${2:$bar}"/>${3}
+snippet gt
+	<gt			property="${1:foo}"	expr="${2:$bar}"/>${3}
+snippet lte
+	<lteq		property="${1:foo}"	expr="${2:$bar}"/>${3}
+snippet gte
+	<gteq		property="${1:foo}"	expr="${2:bar}"/>${3}
+snippet like
+	<like		property="${1:foo}" expr="${2:bar}"/>${3}
+snippet nlike
+	<notlike	property="${1:foo}" expr="${2:bar}"/>${3}
+snippet null
+	<isnull		property="${1:foo}"/>${2}
+snippet nnull
+	<isnotnull	property="${1:foo}"/>${2}
+snippet in
+	<in			property="${1:foo}"	expr="${2:bar}"/>${3}
+snippet nin
+	<notin		property="${1:foo}" expr="${2:bar}"/>${3}
