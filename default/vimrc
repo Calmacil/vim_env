@@ -131,6 +131,7 @@ let g:SrcExpl_updateTagsKey = "<F12>"
 
 au bufread,bufnewfile *.names set ft=dosini
 au bufread,bufnewfile *.t2t set ft=txt2tags
+au bufread,bufnewfile /etc/nginx/* set ft=nginx
 
 au filetype python set omnifunc=pythoncomplete#Complete
 au filetype javascript set omnifunc=javascriptcomplete#CompleteJS
