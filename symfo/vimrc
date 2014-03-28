@@ -23,6 +23,9 @@ if has("syntax")
   match NbSp /\%xa0/
 endif
 
+set listchars=tab:>-,trail:·,extends:>,precedes:<,nbsp:_
+set list
+
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
@@ -113,11 +116,29 @@ au bufread,bufnewfile *.names set ft=dosini
 au bufread,bufnewfile *.t2t set ft=txt2tags
 au bufread,bufnewfile /etc/nginx/* set ft=nginx
 au bufread,bufnewfile .conky*  set ft=conkyrc
+au bufread,bufnewfile *.tpl set ft=twig
 
 au filetype javascript set omnifunc=javascriptcomplete#CompleteJS
 au filetype html set omnifunc=htmlcomplete#CompleteTags
 au filetype css set omnifunc=csscomplete#CompleteCSS
+au filetype twig let g:myft="twig"
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 
 execute pathogen#infect()
+
+""" personnal functions
+function! TplTypeToggle()
+    if g:myft == "twig"
+        let g:myft="smarty"
+        set syntax=smarty
+    elseif g:myft == "smarty"
+        let g:myft="twig"
+        set syntax=twig
+    endif
+endfunction
+
+let g:symfony_enable_shell_mapping = 0
+map <C-F> :execute ":!"g:symfony_enable_shell_cmd<CR>
+map <F8> :TagbarToggle<CR>
+map <F9> :call TplTypeToggle()<CR>
