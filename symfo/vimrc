@@ -70,6 +70,7 @@ set sw=4
 set et
 set ruler
 set rulerformat=%40(%=%t%h%m%r%w%<\ (%n)\ %4.7l,%-7.(%c%V%)\ %P%)
+set autochdir
 
 if has('gui_running')
     colo solarized
@@ -109,6 +110,8 @@ if has("autocmd")
 endif
 filetype plugin on
 
+execute pathogen#infect()
+
 source ~/.vim/bepo.vim
 let mapleader=","
 
@@ -125,7 +128,6 @@ au filetype twig let g:myft="twig"
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 
-execute pathogen#infect()
 
 """ personnal functions
 function! TplTypeToggle()
@@ -138,7 +140,18 @@ function! TplTypeToggle()
     endif
 endfunction
 
+let g:tagbar_phpctags_bin="/home/tlenoel/build/phpctags/phpctags"
+
 let g:symfony_enable_shell_mapping = 0
 map <C-F> :execute ":!"g:symfony_enable_shell_cmd<CR>
 map <F8> :TagbarToggle<CR>
 map <F9> :call TplTypeToggle()<CR>
+map <F4> :execute ":!php -l %"<CR>
+let NERDTreeChDirMode=2
+nnoremap <F7> :NERDTreeToggle .<CR>
+
+" load local vimrc
+let g:my_path = expand("%:p:h") . "/.vimrc_local"
+if filereadable(g:my_path)
+    execute "so ".g:my_path
+endif
