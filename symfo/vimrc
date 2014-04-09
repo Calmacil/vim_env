@@ -140,17 +140,33 @@ function! TplTypeToggle()
     endif
 endfunction
 
+function! ToggleColorColumn()
+    if exists("b:colorcolumnon") && b:colorcolumnon
+        let b:colorcolumnon=0
+        exec ':set colorcolumn=0'
+    else
+        let b:colorcolumnon=1
+        exec ':set colorcolumn=80'
+    endif
+endfunction
+
 let g:tagbar_phpctags_bin="/home/tlenoel/build/phpctags/phpctags"
 
 let g:symfony_enable_shell_mapping = 0
+
+""" Personnal mappings
 map <C-F> :execute ":!"g:symfony_enable_shell_cmd<CR>
 map <F8> :TagbarToggle<CR>
 map <F9> :call TplTypeToggle()<CR>
 map <F4> :execute ":!php -l %"<CR>
+map <F2> :call ToggleColorColumn()<CR>
+
 let NERDTreeChDirMode=2
+let NERDTreeMapOpenInTab='\t'
+let NERDTreeMapOpenVSplit='vi'
 nnoremap <F7> :NERDTreeToggle .<CR>
 
-" load local vimrc
+""" load local vimrc
 let g:my_path = expand("%:p:h") . "/.vimrc_local"
 if filereadable(g:my_path)
     execute "so ".g:my_path
