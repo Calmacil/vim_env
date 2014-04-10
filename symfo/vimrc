@@ -124,8 +124,8 @@ au bufread,bufnewfile *.tpl set ft=twig
 au filetype javascript set omnifunc=javascriptcomplete#CompleteJS
 au filetype html set omnifunc=htmlcomplete#CompleteTags
 au filetype css set omnifunc=csscomplete#CompleteCSS
+au filetype php set omnifunc=phpcomplete#CompletePHP
 au filetype twig let g:myft="twig"
-let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 
 
@@ -146,7 +146,7 @@ function! ToggleColorColumn()
         exec ':set colorcolumn=0'
     else
         let b:colorcolumnon=1
-        exec ':set colorcolumn=80'
+        exec ':set colorcolumn=120'
     endif
 endfunction
 
@@ -156,18 +156,22 @@ let g:symfony_enable_shell_mapping = 0
 
 """ Personnal mappings
 map <C-F> :execute ":!"g:symfony_enable_shell_cmd<CR>
+nnoremap <F7> :NERDTreeToggle .<CR>
 map <F8> :TagbarToggle<CR>
 map <F9> :call TplTypeToggle()<CR>
 map <F4> :execute ":!php -l %"<CR>
-map <F2> :call ToggleColorColumn()<CR>
+nnoremap <F2> :call ToggleColorColumn()<CR>
 
 let NERDTreeChDirMode=2
 let NERDTreeMapOpenInTab='\t'
 let NERDTreeMapOpenVSplit='vi'
-nnoremap <F7> :NERDTreeToggle .<CR>
+let g:SuperTabDefaultCompletionType="context"
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery=["&completefunc:<c-n>","&omnifunc:<c-x><c-o>"]
 
 """ load local vimrc
 let g:my_path = expand("%:p:h") . "/.vimrc_local"
 if filereadable(g:my_path)
     execute "so ".g:my_path
-endif
+    endif
