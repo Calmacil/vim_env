@@ -29,7 +29,7 @@ noremap S K
 noremap zs zj
 noremap zt zK
 
-" {HJKL} <- [CTSN]
+" {HJKL} <- [CTSR]
 " ————————————————
 " {J} = « Jusqu'à »     	(j = suivant, J = précédent)
 noremap j t

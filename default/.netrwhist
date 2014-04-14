@@ -1,8 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/etc/apache2/sites-available'
-let g:netrw_dirhist_2='/home/calmacil/.vim'
-let g:netrw_dirhist_3='/etc/apache2/sites-enabled'
-let g:netrw_dirhist_4='/etc/subversion'
-let g:netrw_dirhist_5='/etc/X11'
-let g:netrw_dirhist_6='/home/calmacil/tools/kassie/kassie/src/corps'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/tlenoel/.astromenace'
+let g:netrw_dirhist_2='/home/tlenoel/projects/vBulletin/patches'
+let g:netrw_dirhist_3='/home/tlenoel/projects/vBulletin/database'
+let g:netrw_dirhist_4='/home/tlenoel/projects/VIDZ'
+let g:netrw_dirhist_5='/etc/apache2/conf.d'
+let g:netrw_dirhist_6='/etc/network/run'
+let g:netrw_dirhist_7='/home/tlenoel/tools/documentation'
+let g:netrw_dirhist_8='/etc/php5/conf.d'

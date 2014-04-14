@@ -60,7 +60,7 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 set number
-set tabstop=8
+set tabstop=4
 set softtabstop=4
 set ts=4
 set sw=4
@@ -69,7 +69,8 @@ set ruler
 set rulerformat=%40(%=%t%h%m%r%w%<\ (%n)\ %4.7l,%-7.(%c%V%)\ %P%)
 
 if has('gui_running')
-    colo desert
+    "colo solarized
+    colo baobaozhu
 
     " statusline
     hi User1 guifg=#eea040 guibg=#666666
@@ -93,10 +94,10 @@ if has('gui_running')
     set guioptions -=r
     set guioptions -=L
     "set guifont=DejaVu\ Sans\ Mono\ 10
-    set guifont=Monospace\ 9
+    set guifont=Anonymous\ Pro\ 10
 
     set lines=64
-    set columns=110
+    set columns=150
 
 endif
 
@@ -132,6 +133,7 @@ let g:SrcExpl_updateTagsKey = "<F12>"
 au bufread,bufnewfile *.names set ft=dosini
 au bufread,bufnewfile *.t2t set ft=txt2tags
 au bufread,bufnewfile /etc/nginx/* set ft=nginx
+au bufread,bufnewfile .conky*  set ft=conkyrc
 
 au filetype python set omnifunc=pythoncomplete#Complete
 au filetype javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -147,3 +149,9 @@ function! SetAutoDjangoCompletion()
     echo 'Activation de la complétion Django avec : '.djangoVar
     return 1
 endfunction
+
+execute pathogen#infect()
+
+" symfony cmds
+let g:symfony_app_console_caller = "php"
+let g:symfony_app_console_path = "app/console"
