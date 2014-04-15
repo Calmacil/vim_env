@@ -1,0 +1,185 @@
+" vimrc suited for use with vundle
+" @author Thomas Lenoel
+" version. 1.0
+"
+" 1. Plugin magagement
+" 2. Custom functions
+" 3. miscellanous settings
+" 4. Plugins config
+" 5. Custom mappings
+" 6. Loading bepo.vim
+" 7. Loading local vimrc
+
+
+""" 1. Plugin management {{{
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+let g:vundle_default_git_proto='git'
+Plugin 'gmarik/vundle'
+
+" load plugins
+
+Plugin 'tmhedberg/matchit'
+Plugin 'scrooloose/nerdtree'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'm2mdas/phpcomplete-extended'
+Plugin 'm2mdas/phpcomplete-extended-symfony'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'ervandew/supertab'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-php/tagbar-phpctags.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'docteurklein/vim-symfony'
+Plugin 'evidens/vim-twig'
+Plugin 'Rykka/riv.vim'
+
+filetype plugin indent on
+
+" }}}
+
+
+""" 2. Custom functions {{{
+
+function! TplTypeToggle()
+    if exists("g:myft")
+        if g:myft == "twig"
+            let g:myft="smarty"
+            set syntax=smarty
+        elseif g:myft == "smarty"
+            let g:myft="twig"
+            set syntax=twig
+        endif
+    endif
+endfunction
+
+function! ToggleColorColumn()
+    if exists("b:colorcolumnon") && b:colorcolumnon
+        let b:colorcolumnon = 0
+        exec ':set colorcolumn=0'
+    else
+        let b:colorcolumnon = 1
+        exec ':set colorcolumn=120'
+    endif
+endfunction
+
+" }}}
+
+
+""" 3. Miscellanous settings {{{
+
+" highlight red nbsp 
+if has('syntax')
+    syntax on
+    highlight NbSp ctermbg=lightred guibg=lightred
+    match NbSp /\%xa0/
+endif
+
+" show whitespaces
+set listchars=tab:>-,trail:·,extends:>,precedes:<,nbsp:_
+set list
+
+set bg=dark
+
+" jump to last position when reopening
+au bufreadpost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+set showcmd
+set showmatch
+set ignorecase
+set smartcase
+set incsearch
+set autowrite
+set hidden
+set mouse=a
+set encoding=utf8
+set laststatus=2
+
+if filereadable('/etc/vim/vimrc.local')
+    so /etc/vim/vimrc.local
+endif
+
+set number
+set ts=4
+set sts=4
+set sw=4
+set et
+set ruler
+set rulerformat=%40(%=%t%h%m%r%w%<\ (%n)\ %4.7l,%-7.(%c%V%)\ %P%)
+set autochdir
+
+if has('autocmd')
+    au! bufwritepost .vimrc so .vimrc
+endif
+
+au bufread,bufnewfile *.names set ft=dosini
+au bufread,bufnewfile *.t2t set ft=txt2tags
+au bufread,bufnewfile /etc/nginx/* set ft=nginx
+au bufread,bufnewfile .conky* set ft=conkyrc
+au bufread,bufnewfile *.tpl set ft=twig
+
+au filetype javascript set omnifunc = javascriptcomplete#CompleteJS
+au filetype html set omnifunc = htmlcomplete#CompleteTags
+au filetype css set omnifunc = csscomplete#CompleteCSS
+au filetype php set omnifunc = phpcomplete#CompletePHP
+au filetype twig let g:myft="twig"
+set completeopt=menuone,longest,preview
+
+hi pmenu ctermfg=lightgrey ctermbg=magenta
+hi pmenusel ctermfg=magenta ctermbg=darkgrey
+
+" }}}
+
+
+""" 4. Plugin config {{{
+
+let NERDTreeChDirMode = 2
+let NERDTreeMapOpenInTab = '\t'
+let NERDTreeMapOpenVSplit = 'vi'
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery = ['&completefunc:<c-n>', '&omnifunc:<c-x><c-o>']
+
+" }}}
+
+
+
+""" 5. Custom mappings {{{
+
+map <C-F> :execute ":!"g:symfony_enable_shell_cmd<CR>
+nnoremap <F7> :NERDTreeToggle .<CR>
+map <F8> :TagbarToggle<CR>
+map <F9> :call TplTypeToggle()<CR>
+map <F4> :execute ":!php -l %"<CR>
+nnoremap <F2> :call ToggleColorColumn()<CR>
+
+" }}}
+
+
+
+""" 6. Loading bepo mappings {{{
+so ~/.vim/bepo.vim
+
+" }}}
+
+
+""" 7. Loading local files {{{
+
+let g:localrcpath = expand('%:p:h').'/.vimrc.local'
+if filereadable(g:localrcpath)
+    execute 'so ' . g:localrcpath
+endif
+
+let g:localcomposerpath = expand('%:p:h').'/composer.json'
+if filereadable(g:localcomposerpath)
+    au filetype php set omnifunc = phpcomplete_extended#CompletePHP
+endif
+
+" }}}
